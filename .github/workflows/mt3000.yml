@@ -50,13 +50,21 @@ jobs:
               -e INCLUDE_DOCKER=$include_docker \
               immortalwrt/imagebuilder:mediatek-filogic-openwrt-23.05.4 /bin/bash /home/build/immortalwrt/build.sh
           done
-
+      - name: Create info
+        run: |
+          if [ "${{ github.event.inputs.include_docker }}" == "yes" ]; then
+            extra_content="### 默认带docker"
+            echo -e "$extra_content" >> ${{ github.workspace }}/mediatek-filogic/info.md
+          else
+            echo -e "NO docker"
+          fi
+          
       - name: Create GitHub Release Info
         uses: softprops/action-gh-release@v2.1.0
         with:
           tag_name: Autobuild-GL-iNet
           name: ImmortalWrt-GL-iNet
-          body_path: ${{ github.workspace }}/info.md
+          body_path: ${{ github.workspace }}/mediatek-filogic/info.md
           draft: false
           prerelease: false
         env:
