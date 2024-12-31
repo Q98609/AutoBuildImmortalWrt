@@ -8,6 +8,16 @@ on:
           目前支持的型号 glinet_gl-mt3000,glinet_gl-mt2500,glinet_gl-mt6000
         required: true
         default: 'glinet_gl-mt3000'
+      include_docker:
+        description: |
+          是否编译 Docker 插件
+        required: true
+        default: 'no'
+        type: choice
+        options:
+          - 'yes'
+          - 'no'
+
 
 jobs:
   build:
@@ -18,7 +28,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set executable permissions
-        run: chmod +x ${{ github.workspace }}/mediatek-filogic/build.sh
+        run: |
+          echo "INCLUDE_DOCKER=${{ github.event.inputs.include_docker }}" >> $GITHUB_ENV
+          chmod +x ${{ github.workspace }}/mediatek-filogic/build.sh
 
       - name: Build Gl-iNet ImmpotalWrt 23.05.4
         run: |

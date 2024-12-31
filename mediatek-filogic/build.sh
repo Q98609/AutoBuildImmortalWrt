@@ -1,6 +1,7 @@
 #!/bin/bash
 # yml 传入的路由器型号 PROFILE
 echo "Building for profile: $PROFILE"
+echo "Include Docker: $INCLUDE_DOCKER"
 
 # 输出调试信息
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Starting build process..."
@@ -21,13 +22,12 @@ PACKAGES="$PACKAGES luci-i18n-passwall-zh-cn"
 PACKAGES="$PACKAGES luci-app-openclash"
 PACKAGES="$PACKAGES luci-i18n-homeproxy-zh-cn"
 PACKAGES="$PACKAGES openssh-sftp-server"
-# 若不是 glinet_gl-mt3000
-if [ "$PROFILE" != "glinet_gl-mt3000" ]; then
+
+
+# 判断是否需要编译 Docker 插件
+if [ "$INCLUDE_DOCKER" = "yes" ]; then
     PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
     echo "Adding package: luci-i18n-dockerman-zh-cn"
-else
-    PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
-    echo "Profile is glinet_gl-mt3000, no additional packages added."
 fi
 
 
