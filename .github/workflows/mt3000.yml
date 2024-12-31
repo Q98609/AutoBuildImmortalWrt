@@ -1,4 +1,4 @@
-name: build-mediatek-filogic-immortalwrt-24.10-release
+name: build-gl-inet-23.05.4 ImmpotalWrt
 
 on:
   workflow_dispatch:
@@ -11,16 +11,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set executable permissions
-        run: chmod +x ${{ github.workspace }}/rockchip/build.sh
+        run: chmod +x ${{ github.workspace }}/mediatek-filogic/build.sh
 
-      - name: Setup Docker and Build
+      - name: Build Gl-iNet ImmpotalWrt 23.05.4
         run: |
           profiles="${{ github.event.inputs.profile }}"
           
