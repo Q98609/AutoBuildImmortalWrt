@@ -27,6 +27,7 @@ if [ "$PROFILE" != "glinet_gl-mt3000" ]; then
     PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
     echo "Adding package: luci-i18n-dockerman-zh-cn"
 else
+    PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
     echo "Profile is glinet_gl-mt3000, no additional packages added."
 fi
 
