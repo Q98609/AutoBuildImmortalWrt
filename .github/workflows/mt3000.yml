@@ -41,7 +41,7 @@ jobs:
       - name: Create GitHub Release Info
         uses: softprops/action-gh-release@v2.1.0
         with:
-          tag_name: Autobuild
+          tag_name: Autobuild-GL-iNet
           name: ImmortalWrt-GL-iNet
           body_path: ${{ github.workspace }}/info.md
           draft: false
@@ -52,7 +52,7 @@ jobs:
       - name: Upload ImmortWrt as release assets
         uses: softprops/action-gh-release@v2.1.0
         with:
-          tag_name: Autobuild
+          tag_name: Autobuild-GL-iNet
           files: ${{ github.workspace }}/bin/targets/mediatek/filogic/*.bin
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
